@@ -1,0 +1,80 @@
+[
+  {
+    "trigger": "!so",
+    "response": "Check out ${mention} at https://twitch.tv/${mention}",
+    "aliases": [
+      "!shoutout"
+    ],
+    "active": true
+  },
+  {
+    "trigger": "!sens",
+    "response": "${mention} Valo: 0.2 800dpi",
+    "aliases": [
+      "!sensitivity"
+    ],
+    "active": true
+  },
+  {
+    "trigger": "!感度",
+    "response": "${mention}さん、ヴァロで0.2 DPI800",
+    "aliases": [
+      "!かんど"
+    ],
+    "active": true
+  },
+  {
+    "trigger": "!曲",
+    "response": "${mention}さん、今は再生中：${spotify.currentArtist}  の  ${spotify.currentSong}",
+    "aliases": [
+      "!きょく"
+    ],
+    "active": true
+  },
+  {
+    "trigger": "!song",
+    "response": "${mention} currently playing ${spotify.currentSong} by ${spotify.currentArtist}",
+    "aliases": [
+      "!np",
+      "!nowplaying",
+      "!s"
+    ],
+    "active": true
+  },
+  {
+    "trigger": "!q",
+    "response": "Added ${spotify.queueSong} By ${spotify.queueArtists} to queue",
+    "aliases": [
+      "!rq",
+      "!request",
+      "!queue"
+    ],
+    "active": true
+  },
+  {
+    "trigger": "nastea",
+    "response": "nasty",
+    "aliases": [],
+    "active": true
+  },
+  {
+    "trigger": "nasty",
+    "response": "nastea",
+    "aliases": [],
+    "active": true
+  },
+  {
+    "trigger": "!next",
+    "response": "Now playing ${spotify.nextSong} by ${spotify.nextArtists}",
+    "aliases": [
+      "!skip"
+    ],
+    "active": true
+  },
+  {
+    "trigger": "!when",
+    "response": "${mention} ${spotify.whenSong} by ${spotify.whenArtists} will play in ${spotify.when}~ minutes",
+    "aliases": [],
+    "active": true
+  }
+]

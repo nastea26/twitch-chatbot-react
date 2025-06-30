@@ -1,0 +1,10 @@
+[
+  {
+    "trigger": "!test",
+    "response": "worked"
+  },
+  {
+    "trigger": "!test2",
+    "response": "worked"
+  }
+]
