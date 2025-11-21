@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
 export default function ViewCommand() {
-  const { trigger } = useParams()   // full trigger with prefix or none, URL-encoded
+  const { trigger } = useParams()   
   const navigate = useNavigate()
 
-  const decodedTrigger = decodeURIComponent(trigger)  // decode URL
+  const decodedTrigger = decodeURIComponent(trigger) 
 
   const [newTrigger, setNewTrigger] = useState(decodedTrigger)
   const [response, setResponse] = useState('')
@@ -94,7 +94,7 @@ export default function ViewCommand() {
   }
 
   return (
-    <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded shadow">
+    <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded shadow ">
       <h2 className="text-2xl font-bold mb-4">Edit Command {newTrigger}</h2>
       <form onSubmit={handleUpdate} className="space-y-4">
         {/* Trigger */}

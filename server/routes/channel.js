@@ -1,4 +1,3 @@
-// server/routes/channel.js
 import { startBot, getCurrentChannel } from '../bot.js'
 
 export default function mountChannelRoutes(app) {

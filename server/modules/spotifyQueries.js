@@ -1,13 +1,6 @@
-// server/spotifyApi.js
 import axios from 'axios'
 import ytdl from 'ytdl-core'
 import { getSpotifyAccessToken } from '../spotify.js'
-
-/**
- * Fetches the currently playing track from Spotify.
- * Returns { playing: false } if nothing is playing,
- * or { playing: true, title, artists } when a track is active.
- */
 
 function checkForToken(token){//error out when no token prevent crashing 
   if (!token) {
@@ -25,7 +18,7 @@ async function searchItem(query) {
   const spotifyLinkRegex = /^https?:\/\/open\.spotify\.com\/(?:[A-Za-z0-9_-]+\/)*track\/([A-Za-z0-9]{22})(?:\?.*)?$/;
   const youtubeLinkRegex = /^https?:\/\/(www\.)?(youtube\.com|youtu\.be)\/.+$/;
 
-  // 🎧 Spotify track link
+  //handle spotify links guaranteed 1:1 song match
   const spotifyMatch = query.match(spotifyLinkRegex);
   if (spotifyMatch) {
     const trackID = spotifyMatch[1];
@@ -48,13 +41,13 @@ async function searchItem(query) {
     };
   }
 
-  // 🎥 YouTube link
+  //handling youtube links
   if (youtubeLinkRegex.test(query)) {
     try {
       const info = await ytdl.getBasicInfo(query);
       const title = info.videoDetails.title;
 
-      // Optional: clean title (e.g. remove "(Official Video)", etc.)
+      //clean title ( remove "(Official Video)", and stuff like that)
       const cleanedTitle = title
         .replace(/\(.*?(official|lyrics|video).*?\)/i, '')
         .replace(/\[.*?(official|lyrics|video).*?\]/i, '')
@@ -68,7 +61,7 @@ async function searchItem(query) {
     }
   }
 
-  // 🔍 General text search (or fallback after YouTube extraction)
+  // search for the song using given string
   const resp = await axios.get(
     `https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=track&limit=1`,
     { headers: { Authorization: `Bearer ${token}` } }
@@ -148,7 +141,7 @@ export async function addToQueue(q) {
 
   const resp = await axios.post(
     `https://api.spotify.com/v1/me/player/queue?uri=${song.uri}`,
-    null, //body
+    null, 
     {headers:{Authorization: `Bearer ${token}`}}
   )
   

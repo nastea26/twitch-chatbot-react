@@ -1,4 +1,3 @@
-// server/routes/spotifyApi.js
 import * as spotifyQueries from '../modules/spotifyQueries.js'
 import path from 'path'
 import fs from 'fs'
@@ -62,10 +61,10 @@ export default function mountSpotifyApi(app) {
 
       const current = await res.json()
 
-      // Approximate the song’s start time
+      //Get when the song started
       const currentStart = Date.now() - current.position
 
-      // Avoid removing again for the same playback
+      // Avoid removing again for the same playback, limit it to removing from queue once per track even if they are identical 
       if (current.uri === lastRemovedUri && Math.abs(currentStart - lastPlaybackStart) < 5000) {
         return
       }

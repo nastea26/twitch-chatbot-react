@@ -1,9 +1,15 @@
-// server/bot.js
 import tmi from 'tmi.js'
 import dotenv from 'dotenv'
 import { processCommand } from './modules/commands.js'
+import { onWsMessage } from './wsServer.js'
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-dotenv.config()
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 let client = null
 let currentChannel = process.env.VITE_DEFAULT_CHANNEL || null
@@ -20,13 +26,13 @@ export async function startBot(overrideChannel = null) {
     return
   }
 
-  // If already connected to the same channel, skip
+  // If already connected channel and new chanel are the same to do nothing 
   if (client && currentChannel === channel && client.readyState() === 'OPEN') {
     console.log(`Bot already connected to #${channel}`)
     return
   }
 
-  // Disconnect only if switching channel
+  // Disconnect when switching channels
   if (client) {
     await client.disconnect()
     client = null
@@ -34,7 +40,6 @@ export async function startBot(overrideChannel = null) {
 
   currentChannel = channel
 
-  // Create client with auto-reconnect and secure
   client = new tmi.Client({
     options: { debug: true },
     connection: { reconnect: true, secure: true },
@@ -93,3 +98,12 @@ export async function stopBot() {
 export function getCurrentChannel() {
   return currentChannel
 }
+
+onWsMessage((data) => {
+  if (data.type === 'chat') {
+    const { message } = data
+    if (client && currentChannel) {
+      client.say(currentChannel, message)
+    }
+  }
+})

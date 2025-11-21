@@ -1,12 +1,11 @@
-// src/components/CreateCommand.jsx
 import React, { useState } from 'react'
 import '../index.css'
 
 export default function CreateCommand() {
   const [trigger, setTrigger]   = useState('')
   const [response, setResponse] = useState('')
-  const [aliases, setAliases]   = useState('')      // comma‑separated
-  const [active, setActive]     = useState(true)    // toggle
+  const [aliases, setAliases]   = useState('')   
+  const [active, setActive]     = useState(true)    
   const [loading, setLoading]   = useState(false)
   const [error, setError]       = useState('')
   const [success, setSuccess]   = useState('')
