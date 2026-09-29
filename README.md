@@ -8,7 +8,10 @@ The UI also allows for custom commands and comes with a few placeholders to allo
 #### Technical information:
 
 Connection to Twitch chat is handled through WebSockets
-Spotify API calls run separately from the UI through a Node.js, the default port is 3000 (./server)
+Spotify API calls run separately from the UI through Node.js. Default port is 3000 (./server)
+UI is running using React
+Commands are stored in ```src/data/commands.json``` and can be added via the UI or by following the structure directly in the command.json file
+The queue is stored in ```server/data/queue.json```, this is to track which song was added by which chatter for ```when``` commands to work properly
 
 ## How to run:
 
@@ -25,10 +28,21 @@ npm audit fix
 
 #### RUNNING THE APP
 
-Before running the app, you'll need to prepare your .env file. Refer to the .env.example file for this. If you just want to run the custom twitchbot for commands (without Spotify integration), you do not have to assign values to variables starting with "SPOTIFY_". 
+Before running the app, you'll need to prepare your .env file. Refer to the .env.example file for this. If you want to run the custom twitchbot for commands (without Spotify integration), you do not have to assign values to variables starting with "SPOTIFY_". 
 
 ```console
 npm run dev & node ./server/server.js
+```
+NOTE: On Windows, you will need to run these commands each in their own cmd:
+
+```console
+npm run dev
+```
+
+AND
+
+```console
+node ./server/server.js
 ```
 
 <img width="1263" height="671" alt="image" src="https://github.com/user-attachments/assets/bae93b91-bc09-4884-86da-82675fa706c3" />
@@ -45,8 +59,9 @@ ${KEYWORD}
 #### KEYWORDS:
 
 ##### CHATBOT KEYWORDS:
-
-| `mention` | Repeats whatever came after the command. For example, in pre-prepared messages, it can be used to automatically mention the specified username |
+| Keyword | Description |
+| --- | --- |
+| `mention` | Repeats whatever came after the command. For example, in pre-prepared messages, it can be used to mention the specified username |
 | `user` | Fills in the username of whoever used the command |
 
 ##### SPOTIFY KEYWORDS:
