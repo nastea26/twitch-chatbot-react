@@ -84,13 +84,13 @@ export async function handleSpotifyPlaceholders(response, parts, tags) {
         .replace(/\$\{spotify\.currentArtist\}/g, currentSongData?.artists || '')
         .replace(/\$\{spotify\.queue\}/g, '')
         .replace(/\$\{spotify\.queueSong\}/g, queueData?.name || '')
-        .replace(/\$\{spotify\.queueArtists\}/g, queueData?.artists || '')
+        .replace(/\$\{spotify\.queueArtist\}/g, queueData?.artists || '')
         .replace(/\$\{spotify\.next\}/g, '')
         .replace(/\$\{spotify\.nextSong\}/g, skipData?.queue.songs[0] || '')
-        .replace(/\$\{spotify\.nextArtists\}/g, skipData?.queue.artists[0] || '')
+        .replace(/\$\{spotify\.nextArtist\}/g, skipData?.queue.artists[0] || '')
         .replace(/\$\{spotify\.when\}/g, whenData?.when || '')
         .replace(/\$\{spotify\.whenSong\}/g, whenData?.whenName || '')
-        .replace(/\$\{spotify\.whenArtists\}/g, whenData?.whenArtists || '')
+        .replace(/\$\{spotify\.whenArtist\}/g, whenData?.whenArtists || '')
 
     } catch (err) {
       console.error(`Error handling Spotify placeholder ${key}:`, err)
