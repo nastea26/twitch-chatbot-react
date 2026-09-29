@@ -7,10 +7,14 @@ The UI also allows for custom commands and comes with a few placeholders to allo
 
 #### Technical information:
 
-Connection to Twitch chat is handled through WebSockets
-Spotify API calls run separately from the UI through Node.js. Default port is 3000 (./server)
-UI is running using React
+Connection to Twitch chat is handled through WebSockets.
+
+Spotify API calls run separately from the UI through Node.js. Default port is 3000 (./server). 
+
+UI is running using React.
+
 Commands are stored in ```src/data/commands.json``` and can be added via the UI or by following the structure directly in the command.json file
+
 The queue is stored in ```server/data/queue.json```, this is to track which song was added by which chatter for ```when``` commands to work properly
 
 ## How to run:
